@@ -7,6 +7,9 @@ jobs:
     - uses: actions/checkout@v4
     - uses: hashicorp/setup-terraform@v4
 
+    - name: Change directory
+      run: cd ./infra
+
     - name: Terraform fmts
       id: fmt
       run: terraform fmt -check
