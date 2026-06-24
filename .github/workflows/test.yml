@@ -1,0 +1,21 @@
+name: Test Project
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: hashicorp/setup-terraform@v4
+
+    - name: Terraform fmts
+      id: fmt
+      run: terraform fmt -check
+      continue-on-error: true
+
+    - name: Terraform Init
+      id: init
+      run: terraform init -input=false
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
